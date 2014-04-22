@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<script type="text/javascript" src="cookie.js"></script>  
+<script type="text/javascript" src="preload.js"></script>  
+<title>Sign in</title>
+<script type="text/javascript">
+var playerId_;
+function check_password() {
+  var password = document.getElementById("password").value;
+  password = password.trim();
+  if(password == "") {
+    document.getElementById("password_error").innerHTML = "Please enter password";
+  }else {
+    if(/^\w{6,20}$/.test(password)) {
+      document.getElementById("password_error").innerHTML = "";
+    }else {
+      document.getElementById("password_error").innerHTML = "Password is invalid";
+    }
+  }
+}
+function check_playerId() {
+  var playerId = document.getElementById("playerId").value;
+  playerId = playerId.trim();
+  if(playerId == "") {
+    document.getElementById("playerId_error").innerHTML = "Please enter playerId";
+  }else {
+    document.getElementById("playerId_error").innerHTML = "";
+  }
+
+}
+function login() {
+  var password_error = document.getElementById("password_error").innerHTML;
+  var password = document.getElementById("password").value;
+  var playerId_error = document.getElementById("playerId_error").innerHTML;
+  var playerId = document.getElementById("playerId").value;
+  playerId_ = playerId;
+  if(password_error==""&&playerId_error==""&&password!=""&&playerId!="") { 
+    var url = "http://4-dot-smg-server.appspot.com/players/" + playerId + "?password=" + password;
+    var xmlHttp;
+	if(window.XMLHttpRequest){
+	  xmlHttp = new XMLHttpRequest();
+	}else{
+	  xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlHttp.onreadystatechange = function() {
+	  if(xmlHttp.readyState==4&&xmlHttp.status==200) {
+	    var response = xmlHttp.responseText; 
+	    reportReply(response);
+	  }
+	}
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send();
+  }
+}
+function reportReply(message) {
+  var response = JSON.parse(message);
+  if(response.error == undefined) {
+    setCookie("playerId", playerId_, "", "/");
+    setCookie("email", response.email, "", "/");
+    setCookie("accessSignature", response.accessSignature, "", "/");
+    window.location.href = "Platform.html";
+  }else {
+    alert(response.error);
+  }
+}
+</script>
+<style>
+.unitDiv {width: 800px; height:40px;}
+.error_info {width:300px;float:left}
+.info_name {width:150px;float:left}
+input {width:300px;float:left;}
+</style>
+</head>
+<body>
+     <div style="clear:both">
+       <div id="logo" style="float:left"><img src="image/logo.png"/></div>
+       <div id="welcome" style="float:right"></div>
+     </div>
+     <br>
+     <div style="clear:both;height:20px"></div>
+     <div style="clear:both">
+     <div class="unitDiv">
+       <span class="info_name">PlayerId:</span>
+       <input id="playerId" type="text" onblur="check_playerId()"/>
+       <span id="playerId_error" class="error_info"></span>
+     </div>
+     <div class="unitDiv">
+       <span class="info_name">Password:</span>
+       <input id="password" type="password" onblur="check_password()"/>
+       <span id="password_error" class="error_info"></span>
+     </div>
+     </div>
+     <div style="clear:both;margin-left:100px;margin-top:50px;">
+       <button style="width:80px;height:24px" onclick="login()">sign in</button>
+     </div>
+       <script>
+       var url = window.location.href;
+       var posOfName = url.indexOf("playerId");
+       if(posOfName != -1) {
+         var posOfValue =  posOfName + 9;
+         var currentPlayerId = url.substring(posOfValue);
+         document.getElementById("playerId").value = currentPlayerId;
+       }
+  </script>
+</body>
+</html>

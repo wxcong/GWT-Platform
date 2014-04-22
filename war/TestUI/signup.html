@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Sign up</title>
+<script type="text/javascript">
+ function check_email() {
+   var email = document.getElementById("email").value;
+   email = email.trim();
+   if(email == "") {
+     document.getElementById("email_error").innerHTML = "&nbsp;&nbsp;&nbsp;Please Enter Email";
+   }else {
+     if(/^[\w-]+[\.]*[\w-]+[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/.test(email)) {
+       document.getElementById("email_error").innerHTML = "";
+     }else {
+       document.getElementById("email_error").innerHTML = "&nbsp;&nbsp;&nbsp;Email is invalid";
+     }
+   }
+ }
+ 
+ function check_password() {
+   var password = document.getElementById("password").value;
+   password = password.trim();
+   if(password == "") {
+     document.getElementById("password_error").innerHTML = "&nbsp;&nbsp;&nbsp;Please enter password";
+   }else {
+     if(/^\w{6,20}$/.test(password)) {
+       document.getElementById("password_error").innerHTML = "";
+     }else {
+       document.getElementById("password_error").innerHTML = "&nbsp;&nbsp;&nbsp;Password is invalid";
+     }
+   }
+ }
+ 
+  function register() {
+   var email_error = document.getElementById("email_error").innerHTML;
+   var password_error = document.getElementById("password_error").innerHTML;
+   var repassword_error = document.getElementById("repassword_error").innerHTML;
+   var email = document.getElementById("email").value;
+   var password = document.getElementById("password").value;
+   var repassword = document.getElementById("repassword").value;
+   var firstname = document.getElementById("firstname").value 
+   var lastname = document.getElementById("lastname").value;
+   var nickname = document.getElementById("nickname").value;
+   if(email_error==""&&password_error==""&&repassword_error==""&&email!=""&&password!=""&&repassword!="") {
+      var message = {
+      "email" : email,
+      "password" : password
+      };
+	  var url = "http://4-dot-smg-server.appspot.com/players";
+	  
+	  var xmlHttp;
+	  if(window.XMLHttpRequest){
+	    xmlHttp = new XMLHttpRequest();
+	  }else{
+	    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	  xmlHttp.onreadystatechange = function() {
+	    if(xmlHttp.readyState==4&&xmlHttp.status==200) {
+	      var response = xmlHttp.responseText; 
+	      reportReply(response);
+	    }
+	  }
+      xmlHttp.open("POST", url, true);
+      xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      xmlHttp.send(JSON.stringify(message));
+   }
+ }
+
+ function check_repassword() {
+   var repassword = document.getElementById("repassword").value;
+   repassword = repassword.trim();
+   var password = document.getElementById("password").value.trim();
+   if(repassword == "") {
+     document.getElementById("repassword_error").innerHTML = "&nbsp;&nbsp;&nbsp;Please enter password";
+   }else if(repassword != password) {
+     document.getElementById("repassword_error").innerHTML = "&nbsp;&nbsp;&nbsp;Password is not matched";
+   }else {
+     document.getElementById("repassword_error").innerHTML = "";
+   }
+ }
+ 
+ function reportReply(message) {
+   var response = JSON.parse(message);
+   if(response.error == undefined) {
+     document.getElementById("accessSignature").value = response.accessSignature;
+     document.getElementById("playerId").value = response.playerId;
+     //If register successfully, the js should paste the playerId to the url, so when the user
+     //wants to log in, she did not need to enter the playerId again;
+    var para = response.playerId;
+    var signin = document.getElementById("signin");
+    signin.onclick = function onclick(event) {
+      javascript:window.location.href="signin.html?playerId=" + para;
+    }
+   }else {
+     alert(response.error);
+   }
+ }
+</script>
+<style>
+.unitDiv {width: 800px; height:40px;}
+.error_info {width:300px;float:left}
+.info_name {width:150px;float:left}
+input {width:300px;float:left;}
+</style>
+</head>
+<body>
+   <div style="clear:both">
+   <div id="logo"><img src="image/logo.png"/></div>
+   <br>
+   <div id="signup">
+     <div class="unitDiv">
+       <span class="info_name">Email:</span>
+       <input id="email" type="text" onblur="check_email()"/>
+       <span id="email_error" class="error_info"></span>
+     </div>
+
+     <div class="unitDiv">
+       <span class="info_name">Password:</span>
+       <input id="password" type="password" onblur="check_password()"/>
+       <span id="password_error" class="error_info"></span>
+     </div>
+
+     <div class="unitDiv">
+       <span class="info_name">Re-Password:</span>
+       <input id="repassword" type="password" onblur="check_repassword()"/>
+       <span id="repassword_error" class="error_info"></span>
+     </div>
+     
+     <div class="unitDiv">
+       <span class="info_name">AccessSignature:</span>
+       <input id="accessSignature" type="text"/>
+       <span class="error_info"></span>
+     </div>
+     
+     <div class="unitDiv">
+       <span class="info_name">PlayerId:</span>
+       <input id="playerId" type="text"/>
+       <span class="error_info"></span>
+     </div>
+
+     <div class="unitDiv">
+       <span class="info_name">FirstName:</span>
+       <input id="firstname" type="text"/>
+       <span id="firstname_error" class="error_info"></span>
+     </div>
+
+     <div class="unitDiv">
+       <span class="info_name">LastName:</span>
+       <input id="lastname" type="text"/>
+       <span id="lastname_error" class="error_info"></span>
+     </div>
+
+     <div class="unitDiv">
+       <span class="info_name">NickName:</span>
+       <input id="nickname" type="text" class="_input"/>
+       <span id="nickname_error" class="error_info"></span>
+     </div>
+   </div>
+   <div style="clear:both;margin-left:100px;margin-top:50px;">
+   <button style="width:80px;height:24px" onclick="register()">sign up</button>
+   <button id="signin" style="width:80px;height:24px" onclick="javascript:window.location.href='signin.html'">
+   sign in
+   </button>
+   </div>
+   </div>
+</body>
+</html>

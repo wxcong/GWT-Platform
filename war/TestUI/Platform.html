@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://talkgadget.google.com/talkgadget/channel.js"></script>
+<script type="text/javascript" src="cookie.js"></script>  
+<script type="text/javascript" src="preload.js"></script>  
+<script type="text/javascript" src="../Container/Container.nocache.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<script>
+function signout() {
+  var playerId = getCookieValue("playerId");
+  var email = getCookieValue("email");
+  var accessSignature = getCookieValue("accessSignature");
+  if(playerId==""||email==""||accessSignature=="") {
+    alert("You have not signed in!");
+    return;
+  }
+  deleteCookie("playerId", "/");
+  deleteCookie("email", "/");
+  deleteCookie("accessSignature", "/");
+  alert("Sign out successfully!");
+}
+</script>
+<title>Game Platform</title>
+<style>
+nav {
+  background-color:#00BFFF;
+  height:40px;
+}
+
+nav ul {
+  font-family: Arial, Verdana;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ 
+nav ul li {
+  display: block;
+  position: relative;
+  float: left;
+}
+
+nav li ul { 
+  display: none; 
+}
+ 
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  padding: 7px 15px 3px 15px;
+  background: #00BFFF;
+  color: #ffffff;  
+  margin-left: 1px;
+  white-space: nowrap;
+  height:30px; 
+  width:90px;
+  text-align:center;
+}
+ 
+nav ul li a:hover { 
+  background: #00BFFF; 
+}
+ 
+nav li:hover ul {
+  display: block;
+  position: absolute;
+  height:30px;
+}
+ 
+nav li:hover li {
+  float: none;
+  font-size: 15px;
+ 
+}
+ 
+nav li:hover a { 
+  background: #00BFFF; 
+  height:30px; 
+}
+ 
+nav li:hover li a:hover { 
+  background: #00BFFF; 
+}
+ 
+nav ul li ul li a {
+    text-align:center;
+}
+</style>
+
+</head>
+<body>
+  <div style="clear:both">
+    <div id="logo" style="float:left"><img src="image/logo.png"/></div>
+    <div id="user" style="float:right">
+        <ul>
+          <li><a href="signin.html">Sign in</a></li>
+          <li><a href="javascript:void(0)" onclick="signout()">Sign out</a></li>
+          <li><a href="signup.html">Sign up</a></li>
+        </ul>
+    </div>
+    <div id="welcome" style="float:right"></div>
+  </div>
+  
+  <div style="clear:both">
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      
+      <li><a href="#">Game</a>
+        <ul id="gameList">
+          <li><a name="cheat" href="javascript:handleAnchorClick('cheat.html','5977934124810240', 1)">Cheat</a></li>
+        </ul>
+      </li> 
+              
+      <li><a href="#">Contact</a></li>     
+    </ul>
+  </nav>
+  </div>
+  <br>
+  <div>
+  <div id="main" style="width:900px;height:450px;float:center">
+    <div id="game" style="width:700px;height:450px;float:left"></div>
+    <div id="time" style="width:200px;height:100px;float:left">
+      <span><h3 id="time_display"></h3></span>
+    </div>
+    <div id="turn" style="width:200px;height:150px;float:left">
+      <span><h3 id="turn_display"></h3></span>
+    </div>
+    <div id="control" style="width:200px;height:200px;float:left">
+      <span id="enter"></span>
+      <span id="quit"></span>
+      <span id="closeSocket"></span>
+    </div>
+  </div>
+  </div>
+</body>
+</html>
