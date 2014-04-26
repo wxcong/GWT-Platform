@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Platform</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+</head>
+<body style="background-color: #e8e8e8">
+<div class="content">
+
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">GWT Container</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="play.html">Play</a></li>
+                <li class="dropdown">
+                    <a href=# class="dropdown-toggle" data-toggle="dropdown">Play Mode<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header"><strong>Single Play</strong></strong></li>
+                        <li><a href="#">Match a Opponent</a></li>
+                        <li><a href="#">Play with AI</a></li>
+                        <li><a href="#">Pass and Play</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header"><strong>Multi Play</strong></li>
+                        <li><a href="#">Match a Opponent</a></li>
+                        <li><a href="#">Invite a Friend</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Dropdown header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" name="user-name" class="dropdown-toggle" data-toggle="dropdown"></a>
+                    <ul class="dropdown-menu">
+                        <li align="center" class="well">
+                            <div><img name="user-image" class="img-responsive" style="padding:2%;" src="http://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/twDq00QDud4/s120-c/photo.jpg"/></div>
+                            <a href="#" class="btn btn-sm btn-default"><i class="fa fa-user"></i> Profile</a>
+                            <a href="#" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-lock"></span> Security</a>
+                            <a href="javascript:signout()" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul name="usericon" class = "nav navbar-nav navbar-right">
+                <li><a data-toggle="modal" href = "#loginModal"><span class="fa fa-user">Sign in</span></a></li>
+            </ul>
+
+            <!-- Modal -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"><strong>login Page</strong></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form class="form-horizontal" action='javascript:signin()' method="GET">
+                                            <!-- Username -->
+                                            <label class="control-label"  for="email">Email</label>
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                                            <!-- Password-->
+                                            <label class="control-label" for="password">Password</label>
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="Passward" required>
+                                            <p></p>
+                                            <button type="submit" class="btn btn-primary">Sign in</button>
+                                            <a href="setNewPassword.html">Forgot Password?</a>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <h1></h1>
+                                        <div class="col-md-10 col-lg-offset-1">
+                                            <a class="btn btn-google-plus-style btn-lg btn-block" href="../userSocialAuth/google">
+                                                <span>Login with <strong>Google+</strong></span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-lg-offset-1">
+                                            <a class="btn btn-facebook-style btn-lg btn-block" href="../userSocialAuth/google">
+                                                <span>Login with <strong>Facebook</strong></span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-lg-offset-1">
+                                            <a class="btn btn-info btn-lg btn-block" href="../userSocialAuth/twitter">
+                                                <span>Login with <strong>Twitter</strong></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <p>
+                                <b>New To here?</b>
+                                <a href="signup.html" class="btn btn-primary">Register</a>
+                            </p>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+        </div>
+    </div>
+</div>
+
+<div class="container" id="property-listings">
+<div class="row">
+<div class="col-md-2">
+    <div class="panel panel-info">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Most Hotting Game</div>
+        <!-- List group -->
+        <ul class="list-group">
+            <li class="list-group-item">asdfasd</li>
+            <li class="list-group-item">asdfasdfasdf</li>
+            <li class="list-group-item">asdfadsfasdfas</li>
+            <li class="list-group-item">sdgfadgsdfgsfdgs</li>
+            <li class="list-group-item">sdfgsdfgsdfgs</li>
+        </ul>
+        <div class="panel-footer">Panel footer</div>
+    </div>
+
+    <div class="panel panel-danger">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Most Hotting Game</div>
+        <!-- List group -->
+        <ul class="list-group">
+            <li class="list-group-item">asdfasd</li>
+            <li class="list-group-item">asdfasdfasdf</li>
+            <li class="list-group-item">asdfadsfasdfas</li>
+            <li class="list-group-item">sdgfadgsdfgsfdgs</li>
+            <li class="list-group-item">sdfgsdfgsdfgs</li>
+            <div class="panel-footer">Panel footer</div>
+        </ul>
+    </div>
+</div>
+
+<div class="col-md-10">
+<!--FILTERS-->
+<div class="row">
+    <div class="col-md-7 col-md-offset-1">
+        <div id="filters" class="button-group">
+            <button class="button is-checked" data-filter="*">ALL Game</button>
+            <button class="button" data-filter=".CardGame">Card Game</button>
+            <button class="button" data-filter=".BoardGame">Board Game</button>
+            <button class="button" data-filter=".ChessGame">Chess Game</button>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div id="sorts" class="button-group">
+            <button class="button is-checked" data-sort-value="original-order">Original Order</button>
+            <button class="button" data-sort-value="rating">Rating</button>
+        </div>
+        <h3></h3>
+    </div>
+</div>
+<!--FILTERS-->
+<div class="row">
+<div class="col-md-6 isotope">
+    <!-- Begin Listing: 609 W GRAVERS LN-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="javascript:playgame('cheat.html', '500', '600', '65836483643838')" target="_parent">Cheat<small class="pull-right">Rating 5</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>Difficulty: </li>
+                    <li class="difficulty">5</li>
+                    <li style="list-style: none">|</li>
+
+                    <li>Rating: </li>
+                    <li class="rating">5</li>
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right" data-toggle="modal" data-target="#PlayModeModal">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 218 LYNNEBROOK LN-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Chess Game1<small class="pull-right">Rating 2</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>Difficulty: </li>
+                    <li class="difficulty">4</li>
+                    <li style="list-style: none">|</li>
+
+                    <li>Rating: </li>
+                    <li class="rating">2</li>
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 218 LYNNEBROOK LN-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Card Game2<small class="pull-right">Rating 3</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>Difficulty: </li>
+                    <li class="difficulty">3</li>
+                    <li style="list-style: none">|</li>
+
+                    <li>Rating: </li>
+                    <li class="rating">3</li>
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 209 CHESTNUT HILL AVE-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Board Game1 <small class="pull-right">Rating 1</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>Difficulty: </li>
+                    <li class="difficulty">5</li>
+                    <li style="list-style: none">|</li>
+
+                    <li>Rating: </li>
+                    <li class="rating">1</li>
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+
+</div>
+
+
+<div class="col-md-6 isotope">
+    <!-- Begin Listing: 609 W GRAVERS LN-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Card Game3 <small class="pull-right">Rating 5</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>Difficulty: </li>
+                    <li class="difficulty">1</li>
+                    <li style="list-style: none">|</li>
+
+                    <li>Rating: </li>
+                    <li class="rating">5</li>
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+
+    <!-- Begin Listing: 704 SAINT GEORGES ST-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Board Game2<small class="pull-right">Rating 5</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>Difficulty: </li>
+                    <li class="difficulty">3</li>
+                    <li style="list-style: none">|</li>
+
+                    <li>Rating: </li>
+                    <li class="rating">5</li>
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 701 W ALLENS LN-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">BoardGame3<small class="pull-right">Rating 1</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>Difficulty: </li>
+                    <li class="difficulty">3</li>
+                    <li style="list-style: none">|</li>
+
+                    <li>Rating: </li>
+                    <li class="rating">1</li>
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 704 SAINT GEORGES ST-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Chess Game2<small class="pull-right">Rating 3</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>Difficulty: </li>
+                    <li class="difficulty">2</li>
+                    <li style="list-style: none">|</li>
+
+                    <li>Rating: </li>
+                    <li class="rating">3</li>
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="PlayModeModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Please Choose Play Mode</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Multi Play<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a onclick="javascript:playgame('cheat.html', '500', '600', '6591089830002688')">Automatic Match</a></li>
+                        <li><a href="#">Invite a friend</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Single Play<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Play with AI</a></li>
+                        <li><a href="#">Pass and Play</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/cookie.js"></script>
+<script src="js/main.js"></script>
+<script src="js/sign.js"></script>
+<script src="js/sort.js"></script>
+<script src="js/jquery.isotope.min.js"></script>
+<script src="js/jquery.countdown.js"></script>
+<script src="js/playgame.js"></script>
+</body>
+</html>

@@ -18,11 +18,12 @@ public class Container {
   private String accessSignature = null;
   private JSONArray lastMove = null;
   private List<String> playerIds = Lists.newArrayList();
+  private boolean isMyTurn = false;
   
   private final Serialization serialization = new Serialization();
   private final Deserialization deserialization = new Deserialization();
   
-  private String serverName = "http://4-dot-smg-server.appspot.com/";
+  private String serverName = "http://5-dot-smg-server-rl.appspot.com/";
 	
   //for UI test
   public void setGameId(String gameId) {
@@ -101,6 +102,14 @@ public class Container {
       new JSONString(accessSignature));
   }
   
+  public void sendEnterQueueAsyn() {
+    ServerApi.sendEnterQueueAsyn(
+	    serverName,
+	    new JSONString(gameId),
+	    new JSONString(myPlayerId),
+	    new JSONString(accessSignature));
+  }
+  
   public void setPlayerIds(JSONArray playerIds) {
     for(int i=0; i<playerIds.size(); i++) {
       this.playerIds.add(playerIds.get(i).isString().stringValue());	
@@ -115,7 +124,7 @@ public class Container {
     return lastMove;
   }
   
-  public void sendGameReady() {
+  public void sendGameReady(int type) {
 	JSONArray _playerIds = new JSONArray();
 	int index = 0;
 	for(String playerId : playerIds) {
@@ -126,7 +135,8 @@ public class Container {
         serverName,
         new JSONString(accessSignature),
         _playerIds,
-        new JSONString(gameId));
+        new JSONString(gameId),
+        type);
   }
   
   public void closeSocket() {
@@ -146,17 +156,25 @@ public class Container {
 	message.put("lastMove", lastMove);
 	message.put("lastMovePlayerId", lastMovePlayerId);
 	message.put("playerIds", _playerIds);
-	/*
+	
 	if(isMyTurn(lastMove)) {
-	  setTurnInfoDisplay("My Turn");
-	  setTimeCountDown();
-	}else {
-	  setTurnInfoDisplay("Opp Turn");	
+	  isMyTurn = true;
+	  setTurnInfoDisplay("MyTurn");
 	  clearTimer();
+	  setTimeCountDown(this);
+	}else {
+	  isMyTurn = false;
+	  setTurnInfoDisplay("OppTurn");	
+	  clearTimer();
+	  setTimeCountDown(this);
 	}
-	*/
+	
 	sendMessage(message.toString());
   }
+  
+  private native void countDown() /*-{
+    $wnd.countdown();
+  }-*/;
   
   private boolean isMyTurn(JSONArray lastMove) {
 	List<Operation> move = deserialization.deserializeMove(lastMove);
@@ -185,8 +203,7 @@ public class Container {
   }-*/;
 
   public void sendMakeMove(JSONArray move, String gameOverReason) {
-	//setTurnInfoDisplay("");
-	//clearTimer();
+	clearTimer();
 	lastMove = move;
 	JSONArray _playerIds = new JSONArray();
 	int index = 0;
@@ -203,11 +220,19 @@ public class Container {
 		move);
   }
   
+  //for Asyn
+  public void setPlayerIds(String oppId) {
+    playerIds.add(myPlayerId);
+    playerIds.add(oppId);
+    Window.alert("playerIds are:" + playerIds.toString());
+  }
+  
   public void getMatchInfo() {
     ServerApi.getMatchInfo(
         serverName, 
         myPlayerId, 
-        accessSignature);
+        accessSignature,
+        gameId);
   }
   
   public void updateGame() {
@@ -228,29 +253,64 @@ public class Container {
     sendMakeMove(_quitMove, gameOverReason);
   }
   
-  public native void setTimeCountDown() /*-{
-  	var seconds = 60;
+  public void getOppInfoFromServer() {
+	Window.alert("To Get Info of My Opp");
+	String oppPlayerId = myPlayerId.equals(playerIds.get(0)) ? playerIds.get(1) : playerIds.get(0);
+    ServerApi.getPlayerInfo(
+        serverName,
+        myPlayerId,
+        oppPlayerId,
+        accessSignature);
+  }
+  
+  public void getMyInfoFromServer() {
+	Window.alert("To Get Info of Myself");
+    ServerApi.getPlayerInfo(
+        serverName,
+        myPlayerId,
+        myPlayerId,
+        accessSignature);
+  }
+
+  public native void setTimeCountDown(Container container) /*-{
+  	var seconds = 30;
   	var span = seconds;
   	var lapse = 0;
   	$wnd.timer = setInterval(function() {
   	  lapse ++;
-  	  $("#TimeCountDown").html(span - lapse);
+  	  var diff = span - lapse;
+  	  $doc.getElementById("time").innerHTML = "<h2>" + diff + "</h2>";
   	  if(lapse == span) {
   	    clearInterval($wnd.timer);
+  	    container.@org.client.container.Container::invokeQuitGameTimeOver() ();
   	    return;
   	  }
   	}, 1000);
   }-*/;
   
+  public void invokeQuitGameTimeOver() {
+    if(isMyTurn) {
+      quitGame("Time Over");
+    }
+  }
+ 
+ 
   public native void clearTimer() /*-{
   	if($wnd.timer != undefined) {
       clearInterval($wnd.timer);
-      $("#TimeCountDown").html("");
+      $doc.getElementById("time").html = "";
   	}
   }-*/;
   
   public native void setTurnInfoDisplay(String turnInfo) /*-{ 
-    $("#TurnInfo").html(turnInfo);
+  	if(turnInfo == "MyTurn") {
+  	  $doc.getElementById("oppturn").src = "img/unlight-bulb.png";
+  	  $doc.getElementById("myturn").src = "img/light-bulb.gif";
+  	}
+  	if(turnInfo == "OppTurn") {
+  	  $doc.getElementById("myturn").src = "img/unlight-bulb.png";
+  	  $doc.getElementById("oppturn").src = "img/light-bulb.gif";
+  	}
   }-*/;
 
 }

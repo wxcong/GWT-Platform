@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.min.js">
+    </script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.min.css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</head>
+<body style="background-color: #e8e8e8">
+<script type="text/javascript">
+
+</script>
+<div class="row" style="margin-top:60px">
+    <div class="col-lg-4 col-lg-offset-4">
+        <form class="form-signup" action = "javascript:signup()" role="form" id="post1">
+            <h3 class="text-center">User Sign Up</h3>
+            <label>Email Address</label>
+            <input type="email" name="email" class="form-control" placeholder="Email Address" required autofocus>
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <label>Confirm Password</label>
+            <input type="password" name="confirm" class="form-control" placeholder="Confirm Password" required>
+            <label>First Name</label>
+            <input type="test" class="form-control" placeholder="First Name">
+            <label>Last Name</label>
+            <input type="test" class="form-control" placeholder="Last Name">
+            <label>Nickname</label>
+            <input type="test" class="form-control" placeholder="Nickname">
+            <label>PlayerId</label>
+            <input id="playerId" type="test" class="form-control" placeholder="PlayerId">
+            <h5><button type="submit" class="btn btn-primary" form="post1">Create Account</button></h5>
+        </form>
+        <label id="response" ></label>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/sign.js"></script>
+<script src="js/cookie.js"></script>
+</body>
+</html>
+

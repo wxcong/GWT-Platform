@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+<script type="text/javascript" src="https://talkgadget.google.com/talkgadget/channel.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/cookie.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/jquery.countdown.js"></script>
+    <script src="js/timer.js"></script>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Play Page</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="../Container/Container.nocache.js"></script>
+</head>
+<body style="background-color: #eeeeee">
+<div class="content">
+  <div class="row">
+        <div class="col-md-3">
+            <div class="row">
+                <div class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading center">
+                        <img id="oppprofile" class="img-circle" src="img/myturn.png" height="150" width="150">
+                        <img id="oppturn" src="img/unlight-bulb.png" height="100" width="100">
+                    </div>
+                    <!-- List group -->
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong id="oppfirstname"></strong>
+                            <strong id="oppnickname"></strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <p></p>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div id="time" class="col-md-7">
+                         
+                        </div>
+                        <p></p>
+                    </div>
+                </li>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading center">
+                        <img id="myprofile" class="img-circle center" src="img/myturn.png" height="150" width="150">
+                        <img id="myturn" src="img/unlight-bulb.png" alt="Smiley face" height="100" width="100">
+                    </div>
+                    <!-- List group -->
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong id="myfirstname"></strong>
+                            <strong id="mynickname"></strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <iframe id="board" style="width: 100%; hegitht: 600">
+
+            </iframe>
+
+            <a id="enter" class="btn btn-info btn-lg pull-right">
+                Enter
+            </a>
+            <a id="quit" class="btn btn-info btn-lg pull-right">
+                Quit
+            </a>
+            <a id="invite" class="btn btn-info btn-lg pull-right">
+               Invite
+            </a>
+            <input type="text" id="opp-player-id"/>
+            <a id="refresh" class="btn btn-info btn-lg pull-right">
+              Refresh
+            </a>
+            <a id="aenter" class="btn btn-info btn-lg pull-right">
+              Aenter
+            </a>
+            <input type="text" id="TimeCountDown"/>
+            <input type="text" id="TurnInfo"/>
+        </div>
+     </div>
+</div>
+</body>
+</html>

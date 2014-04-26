@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game Page</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+<script src="js/jquery-2.1.0.min.js"></script>
+
+<script>
+function playgame(address, height, width, gameId) {
+  var info;
+  info = address;
+  location.href = "play.html?" + "address=" + address + "&height=" + height + "&width=" + width + "&gameId=" + gameId;
+}
+</script>
+
+</head>
+<body style="background-color: #e8e8e8">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="container container-pad" id="property-listings">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="panel panel-info">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">Most Hotting Game</div>
+                            <!-- List group -->
+                            <ul class="list-group">
+                                <li class="list-group-item">asdfasd</li>
+                                <li class="list-group-item">asdfasdfasdf</li>
+                                <li class="list-group-item">asdfadsfasdfas</li>
+                                <li class="list-group-item">sdgfadgsdfgsfdgs</li>
+                                <li class="list-group-item">sdfgsdfgsdfgs</li>
+                            </ul>
+                            <div class="panel-footer">Panel footer</div>
+                        </div>
+
+                        <div class="panel panel-danger">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">Most Hotting Game</div>
+                            <!-- List group -->
+                            <ul class="list-group">
+                                <li class="list-group-item">asdfasd</li>
+                                <li class="list-group-item">asdfasdfasdf</li>
+                                <li class="list-group-item">asdfadsfasdfas</li>
+                                <li class="list-group-item">sdgfadgsdfgsfdgs</li>
+                                <li class="list-group-item">sdfgsdfgsdfgs</li>
+                                <div class="panel-footer">Panel footer</div>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <!--FILTERS-->
+                        <div class="row">
+                            <div class="col-md-7 col-md-offset-1">
+                                <div id="filters" class="button-group">
+                                    <button class="button is-checked" data-filter="*">ALL Game</button>
+                                    <button class="button" data-filter=".CardGame">Card Game</button>
+                                    <button class="button" data-filter=".BoardGame">Board Game</button>
+                                    <button class="button" data-filter=".ChessGame">Chess Game</button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div id="sorts" class="button-group">
+                                    <button class="button is-checked" data-sort-value="original-order">Original Order</button>
+                                    <button class="button" data-sort-value="rating">Rating</button>
+                                </div>
+                                <h3></h3>
+                            </div>
+                        </div>
+                        <!--FILTERS-->
+                        <div class="row">
+                            <div class="col-md-6 isotope">
+                                <!-- Begin Listing: 609 W GRAVERS LN-->
+                                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame">
+                                    <div class="media">
+                                        <a class="pull-left" href="#" target="_parent">
+                                            <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+                                        <div class="clearfix visible-sm"></div>
+
+                                        <div class="media-body fnt-smaller">
+                                            <a href="#" target="_parent"></a>
+
+                                            <h4 class="media-heading">
+                                                <a href="javascript:playgame('cheat.html', '500', '600', '5761329797267456')" target="_parent">Cheat<small class="pull-right">Rating 5</small></a></h4>
+
+
+                                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                                <li>Difficulty: </li>
+                                                <li class="difficulty">5</li>
+                                                <li style="list-style: none">|</li>
+
+                                                <li>Rating: </li>
+                                                <li class="rating">5</li>
+                                            </ul>
+
+                                            <p class="hidden-xs">
+                                                A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                                                Countless card games exist, including families of related games (such as poker).
+                                            </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                                            <button class="btn-sm btn-primary pull-right" onclick="javascript:playgame('cheat.html', '500', '600', '5761329797267456')">play</button>
+                                        </div>
+                                    </div>
+                                </div><!-- End Listing-->
+
+                                <!-- Begin Listing: 218 LYNNEBROOK LN-->
+                                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame">
+                                    <div class="media">
+                                        <a class="pull-left" href="#" target="_parent">
+                                            <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+                                        <div class="clearfix visible-sm"></div>
+
+                                        <div class="media-body fnt-smaller">
+                                            <a href="#" target="_parent"></a>
+
+                                            <h4 class="media-heading">
+                                                <a href="#" target="_parent">Chess Game1<small class="pull-right">Rating 2</small></a></h4>
+
+
+                                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                                <li>Difficulty: </li>
+                                                <li class="difficulty">4</li>
+                                                <li style="list-style: none">|</li>
+
+                                                <li>Rating: </li>
+                                                <li class="rating">2</li>
+                                            </ul>
+
+                                            <p class="hidden-xs">
+                                                A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                                                Countless card games exist, including families of related games (such as poker).
+                                            </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                                            <button class="btn-sm btn-primary pull-right">play</button>
+                                        </div>
+                                    </div>
+                                </div><!-- End Listing-->
+
+                                <!-- Begin Listing: 218 LYNNEBROOK LN-->
+                                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame">
+                                    <div class="media">
+                                        <a class="pull-left" href="#" target="_parent">
+                                            <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+                                        <div class="clearfix visible-sm"></div>
+
+                                        <div class="media-body fnt-smaller">
+                                            <a href="#" target="_parent"></a>
+
+                                            <h4 class="media-heading">
+                                                <a href="#" target="_parent">Card Game2<small class="pull-right">Rating 3</small></a></h4>
+
+
+                                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                                <li>Difficulty: </li>
+                                                <li class="difficulty">3</li>
+                                                <li style="list-style: none">|</li>
+
+                                                <li>Rating: </li>
+                                                <li class="rating">3</li>
+                                            </ul>
+
+                                            <p class="hidden-xs">
+                                                A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                                                Countless card games exist, including families of related games (such as poker).
+                                            </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                                            <button class="btn-sm btn-primary pull-right">play</button>
+                                        </div>
+                                    </div>
+                                </div><!-- End Listing-->
+
+                                <!-- Begin Listing: 209 CHESTNUT HILL AVE-->
+                                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame">
+                                    <div class="media">
+                                        <a class="pull-left" href="#" target="_parent">
+                                            <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+                                        <div class="clearfix visible-sm"></div>
+
+                                        <div class="media-body fnt-smaller">
+                                            <a href="#" target="_parent"></a>
+
+                                            <h4 class="media-heading">
+                                                <a href="#" target="_parent">Board Game1 <small class="pull-right">Rating 1</small></a></h4>
+
+
+                                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                                <li>Difficulty: </li>
+                                                <li class="difficulty">5</li>
+                                                <li style="list-style: none">|</li>
+
+                                                <li>Rating: </li>
+                                                <li class="rating">1</li>
+                                            </ul>
+
+                                            <p class="hidden-xs">
+                                                A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                                                Countless card games exist, including families of related games (such as poker).
+                                            </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                                            <button class="btn-sm btn-primary pull-right">play</button>
+                                        </div>
+                                    </div>
+                                </div><!-- End Listing-->
+
+
+                            </div>
+
+
+                            <div class="col-md-6 isotope">
+                                <!-- Begin Listing: 609 W GRAVERS LN-->
+                                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame">
+                                    <div class="media">
+                                        <a class="pull-left" href="#" target="_parent">
+                                            <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+                                        <div class="clearfix visible-sm"></div>
+
+                                        <div class="media-body fnt-smaller">
+                                            <a href="#" target="_parent"></a>
+
+                                            <h4 class="media-heading">
+                                                <a href="#" target="_parent">Card Game3 <small class="pull-right">Rating 5</small></a></h4>
+
+
+                                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                                <li>Difficulty: </li>
+                                                <li class="difficulty">1</li>
+                                                <li style="list-style: none">|</li>
+
+                                                <li>Rating: </li>
+                                                <li class="rating">5</li>
+                                            </ul>
+
+                                            <p class="hidden-xs">
+                                                A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                                                Countless card games exist, including families of related games (such as poker).
+                                            </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                                            <button class="btn-sm btn-primary pull-right">play</button>
+                                        </div>
+                                    </div>
+                                </div><!-- End Listing-->
+
+
+                                <!-- Begin Listing: 704 SAINT GEORGES ST-->
+                                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame">
+                                    <div class="media">
+                                        <a class="pull-left" href="#" target="_parent">
+                                            <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+                                        <div class="clearfix visible-sm"></div>
+
+                                        <div class="media-body fnt-smaller">
+                                            <a href="#" target="_parent"></a>
+
+                                            <h4 class="media-heading">
+                                                <a href="#" target="_parent">Board Game2<small class="pull-right">Rating 5</small></a></h4>
+
+
+                                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                                <li>Difficulty: </li>
+                                                <li class="difficulty">3</li>
+                                                <li style="list-style: none">|</li>
+
+                                                <li>Rating: </li>
+                                                <li class="rating">5</li>
+                                            </ul>
+
+                                            <p class="hidden-xs">
+                                                A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                                                Countless card games exist, including families of related games (such as poker).
+                                            </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                                            <button class="btn-sm btn-primary pull-right">play</button>
+                                        </div>
+                                    </div>
+                                </div><!-- End Listing-->
+
+                                <!-- Begin Listing: 701 W ALLENS LN-->
+                                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame">
+                                    <div class="media">
+                                        <a class="pull-left" href="#" target="_parent">
+                                            <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+                                        <div class="clearfix visible-sm"></div>
+
+                                        <div class="media-body fnt-smaller">
+                                            <a href="#" target="_parent"></a>
+
+                                            <h4 class="media-heading">
+                                                <a href="#" target="_parent">BoardGame3<small class="pull-right">Rating 1</small></a></h4>
+
+
+                                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                                <li>Difficulty: </li>
+                                                <li class="difficulty">3</li>
+                                                <li style="list-style: none">|</li>
+
+                                                <li>Rating: </li>
+                                                <li class="rating">1</li>
+                                            </ul>
+
+                                            <p class="hidden-xs">
+                                                A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                                                Countless card games exist, including families of related games (such as poker).
+                                            </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                                            <button class="btn-sm btn-primary pull-right">play</button>
+                                        </div>
+                                    </div>
+                                </div><!-- End Listing-->
+
+                                <!-- Begin Listing: 704 SAINT GEORGES ST-->
+                                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame">
+                                    <div class="media">
+                                        <a class="pull-left" href="#" target="_parent">
+                                            <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+                                        <div class="clearfix visible-sm"></div>
+
+                                        <div class="media-body fnt-smaller">
+                                            <a href="#" target="_parent"></a>
+
+                                            <h4 class="media-heading">
+                                                <a href="#" target="_parent">Chess Game2<small class="pull-right">Rating 3</small></a></h4>
+
+
+                                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                                <li>Difficulty: </li>
+                                                <li class="difficulty">2</li>
+                                                <li style="list-style: none">|</li>
+
+                                                <li>Rating: </li>
+                                                <li class="rating">3</li>
+                                            </ul>
+
+                                            <p class="hidden-xs">
+                                                A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                                                Countless card games exist, including families of related games (such as poker).
+                                            </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                                            <button class="btn-sm btn-primary pull-right">play</button>
+                                        </div>
+                                    </div>
+                                </div><!-- End Listing-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/sort.js"></script>
+<script src="js/jquery.isotope.min.js"></script>
+
+</body>
+</html>
