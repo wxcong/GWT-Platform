@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Insert title here</title>
+<script src="js/jquery-2.1.0.min.js"></script>
+<script>
+var gameURL = "sjjsjssjjsjs";
+var recipientEmailAddress = "containermailtest@gmail.com";
+function sendURLByEmail() {
+  var xmlHttp;
+  var message = {
+    "subject": "Game Invitation",
+	"content": gameURL,
+	"email": recipientEmailAddress,
+	"name": "GWT Container"
+  }
+  if(window.XMLHttpRequest) {
+    xmlHttp = new window.XMLHttpRequest();
+  }else {
+	xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlHttp.onreadystatechange = function() {
+	alert(xmlHttp.readyState);
+	alert(xmlHttp.status);
+    if(xmlHttp.readyState==4 && xmlHttp.status==200) {
+      console.log(xmlHttp.responseText);
+      alert(xmlHttp.responseText);
+    }
+  }
+  xmlHttp.open("POST", "sendemailservlet", true);
+  xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlHttp.send(JSON.stringify(message));
+}
+</script>
+</head>
+<body>
+<button onclick="sendURLByEmail()">Send</button>
+</body>
+</html>

@@ -1,37 +1,44 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <script src="js/jquery-2.1.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/cookie.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/jquery.countdown.js"></script>
-    <script src="js/test.js"></script>
-    
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Play Page</title>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Insert title here</title>
+<script src="js/jquery-2.1.0.min.js"></script>
 </head>
 <body>
+<script>
+function sendURLByEmail() {
+    gameURL = "http://www.baidu.com";
+    recipientEmailAddress = "wxcnyu2014@gmail.com";
+	$.ajax({
+		  type: "POST",
+		  url: "https://mandrillapp.com/api/1.0/messages/send.json",
+		  data: {
+		    'key': 'qvuLM6WcBJbrBagDUjaU_w',
+		    'message': {
+		      'from_email': 'wxc.cloud@gmail.com',
+		      'to': [
+		          {
+		            'email': recipientEmailAddress,
+		            'name': 'Recipient',
+		            'type': 'to'
+		          }
+		        ],
+		      'autotext': 'true',
+		      'subject': 'abc',
+		      'html': gameURL
+		    }
+		  }
+		 }).done(function(response) {
+		   alert("abc");
+		   alert(JSON.stringify(response));
+		   console.log(response);
+		   alert("finished");
+		 });
+}
+</script>
 
-                                <div id="timerParent1" class="col-md-7">
-                                    <p></p>
-                                    <div id="timer1" class="cell">
-                                        <div id="holder">
-                                            <div class="digits1"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button name="clear" onclick="javascript:countdown()"></button>
+<button onclick="sendURLByEmail()">Send</button>
 
 </body>
 </html>
+
+

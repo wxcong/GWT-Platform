@@ -1,8 +1,10 @@
 /**
- * Created by Tao on 4/22/14.
+ * Create by Tao 4/22/2014
  */
 
-/**Sign in**/
+/**
+ * Sign in
+ */
 function signin() {
     var loginform = $("form").get(1);
 
@@ -32,11 +34,13 @@ function ajaxCallLoginByEmailID(email,password){
             console.log("Login_SUCCESS:" + data);
             data = JSON.parse(data);
             if(data["error"] == undefined) {
+            	removeCookies();
                 setCookie("email", data["email"], "", "/");
                 setCookie("accessSignature", data["accessSignature"], "", "/");
                 setCookie("userId", data["userId"], "", "/");
                 setCookie("imageURL", data["imageURL"], "", "/");
-                location.href="mainpage.html";
+                //location.reload();
+                window.location.href = "./mainpage.html";
             }else {
                 alert(data["error"]);
             }
@@ -46,7 +50,68 @@ function ajaxCallLoginByEmailID(email,password){
             console.log(jqXHR.responseText);
         }
     });
+}
 
+function signin_() {
+    var loginform = $("form").get(1);
+
+    var values = [];
+    var i = 0;
+    $(loginform).children("input").each(function() {
+        values[i] = $(this).val();
+        i++;
+    })
+    var email = values[0];
+    var password = values[1];
+    ajaxCallLoginByEmailIDForInviteFriend(email,password);	
+}
+
+function ajaxCallLoginByEmailIDForInivteFriend(email,password){
+    var server="http://5-dot-smg-server-rl.appspot.com/";
+    var url=server+"user/?email=";
+    url+=email;
+    url+="&password=";
+    url+=password;
+
+    console.log(url);
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function(data, textStatus, jqXHR){
+            console.log("Login_SUCCESS:" + data);
+            data = JSON.parse(data);
+            if(data["error"] == undefined) {
+            	removeCookies();
+                setCookie("email", data["email"], "", "/");
+                setCookie("accessSignature", data["accessSignature"], "", "/");
+                setCookie("userId", data["userId"], "", "/");
+                setCookie("imageURL", data["imageURL"], "", "/");
+                location.reload();
+                //window.location.href = "./mainpage.html";
+            }else {
+                alert(data["error"]);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log("Login_ERROR: " + textStatus + " " + errorThrown);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+function removeCookies() {
+    if(getCookieValue("userId")!="") {
+      deleteCookie("userId", "/");	
+    } 
+    if(getCookieValue("accessSignature")!="") {
+      deleteCookie("accessSignature", "/");
+    }
+    if(getCookieValue("email")!="") {
+      deleteCookie("email", "/");
+    }
+    if(getCookieValue("imageURL")!="") {
+      deleteCookie("imageURL", "/");
+    }
 }
 
 /**Sign out**/
@@ -55,7 +120,7 @@ function signout(){
     deleteCookie('accessSignature', "/");
     deleteCookie('userId', "/");
     deleteCookie('imageURL', "/");
-    location.reload();
+    location.href = "mainpage.html"
 }
 
 /*Sign up**/
@@ -97,7 +162,6 @@ function ajaxCallInsert(email,password,firstname,lastname,nickname){
             
             console.log("Insert_SUCCESS:" +insert);
             document.getElementById("playerId").value = data["userId"];
-            alert("Sign up successfully!");
             ajaxCallLoginByEmailID(email,password);
         },
         error: function(jqXHR, textStatus, errorThrown){

@@ -36,7 +36,10 @@ $( function() {
 
     $('#sorts').on('click', 'button', function(){
         var sortValue = $(this).attr('data-sort-value');
-        $container.isotope({ sortBy: sortValue });
+        $container.isotope({ 
+        	sortBy: sortValue,
+        	sortAscending: false
+        	});
     });
 
     // change is-checked class on buttons

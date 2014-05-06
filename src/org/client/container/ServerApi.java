@@ -6,12 +6,24 @@ import com.google.gwt.appengine.channel.client.SocketError;
 import com.google.gwt.appengine.channel.client.Socket;
 import com.google.gwt.appengine.channel.client.SocketListener;
 import com.google.gwt.appengine.channel.client.ChannelFactory.ChannelCreatedCallback;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+
+import java.util.List;
+import java.util.Map;
+
+import org.client.container.GameApi.Operation;
+import org.client.container.GameApi.EndGame;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.json.client.JSONArray;
+import com.google.common.collect.Lists;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 
 public class ServerApi {
 	
@@ -21,6 +33,7 @@ public class ServerApi {
   private static Container container = null;
   private static boolean sendEmptyState = false;
   private static boolean isPlayerInfoDisplayed = false;
+  private static Deserialization deserialization = new Deserialization();
   
   public static void register(Container container) {
     ServerApi.container = container;
@@ -59,7 +72,6 @@ public class ServerApi {
         if(resJson["error"] != undefined) {
           alert(resJson["error"]);
         }else {
-          alert(response);
           @org.client.container.ServerApi::messageHandlerForPlayerInfo(Ljava/lang/String;Ljava/lang/String;) (response, obj)
         }
       }
@@ -84,8 +96,7 @@ public class ServerApi {
   
   public static native void setPlayerInfo(String obj, String nickname, String firstname, String imageURL) /*-{
     $doc.getElementById(obj + "profile").src = imageURL;
-    $doc.getElementById(obj + "firstname").innerHTML = "Firstname: " + firstname;
-    $doc.getElementById(obj + "nickname").innerHTML = "Nickname: " + nickname;
+    $wnd.oppPlayerId = "";
   }-*/;
   
   public static void sendEnterQueueAsyn(
@@ -139,12 +150,10 @@ public class ServerApi {
     } 
     JSONValue playerIds = responseObject.get("playerIds");
     if(playerIds != null) {
-      Window.alert("Enter the queue and get the match, so begins to insert a new match");
       container.setPlayerIds(playerIds.isArray());
       container.sendGameReady(0);
     }else {
       sendEmptyState = true;
-      Window.alert("Enter the queue successfully and waiting for match");
     }
   }
   
@@ -174,8 +183,6 @@ public class ServerApi {
 	  xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	xmlHttp.onreadystatechange = function() {
-	  alert(xmlHttp.readyState);
-	  alert(xmlHttp.status);
 	  if(xmlHttp.readyState==4 && xmlHttp.status==200) {
 	    var response = xmlHttp.responseText;
 	    var resJson = JSON.parse(response);
@@ -214,9 +221,9 @@ public class ServerApi {
 		  @Override
 		  public void onOpen() {
 		    channel = result;
-			Window.alert("Channel Opened!");
+			//Window.alert("Channel Opened!");
 			if(playerIds != null) {
-			  Window.alert("Receive PlayeIds");
+			  //Window.alert("Receive PlayeIds");
 			  container.setPlayerIds(playerIds.isArray());
 			  container.sendGameReady(0);
 			}
@@ -229,12 +236,12 @@ public class ServerApi {
 			
 		  @Override
 		  public void onError(SocketError error) {
-			Window.alert("Channel error: " + error.getCode() + " : " + error.getDescription());
+			//Window.alert("Channel error: " + error.getCode() + " : " + error.getDescription());
 		  }
 			
 		  @Override
 		  public void onClose() {
-			Window.alert("Channel closed!");
+			//Window.alert("Channel closed!");
 		  }	
 		});
       }
@@ -245,24 +252,58 @@ public class ServerApi {
     socket.close();
   }
   
+  public static native void exportOppPlayerId (String oppPlayerId) /*-{
+    $wnd.oppPlayerId = oppPlayerId;
+  }-*/;
+  
   public static void channelMessageHandler(String message) {
     JSONObject response = JSONParser.parseStrict(message).isObject();
 	if(response.get("error") == null) {
       JSONValue matchId = response.get("matchId");
 	  JSONValue playerIds = response.get("playerIds");
 	  if(matchId != null && playerIds != null) {
-		Window.alert("Receive the matchId and playerIds and then begin to create the initial move");
+		//Window.alert("Receive the matchId and playerIds and then begin to create the initial move");
 	    container.setMatchId((matchId.isString().stringValue())); 
 		container.setPlayerIds(playerIds.isArray());
 		container.updateUi(new JSONObject(), new JSONArray(), new JSONString("1"));
 	    container.getOppInfoFromServer();
 	    container.getMyInfoFromServer();
+	    exportOppPlayerId(container.getOppPlayerId());
 	  }else {
 		JSONValue _state = response.get("state");
 		if(_state!=null) {
 		  JSONObject state = _state.isObject();
 		  JSONArray lastMove = response.get("lastMove").isArray();
 		  JSONString lastMovePlayerId = new JSONString("1");
+		    List<Operation> lastOperations = deserialization.deserializeMove(lastMove);
+		    String result = null;
+		    for(Operation operation : lastOperations) {
+		      if(operation instanceof EndGame) {
+		    	  Map<String, Integer> scoreMap = ((EndGame) operation).getPlayerIdToScore();
+		    	  Integer myScore = scoreMap.get(container.getMyPlayerId());
+		    	  Integer oppScore = scoreMap.get(container.getOppPlayerId());
+		    	  if(myScore == null && oppScore != null) {
+		    		  result = "Sorry! You lose the match";
+		    	  }else if(oppScore == null && myScore != null) {
+		    		  result = "Congratulations! You win the match";
+		    	  }else if(oppScore != null && myScore != null) {
+		    		if(oppScore > myScore) {
+		    		  result = "Sorry! You lose the match";
+		    		}else if(oppScore < myScore) {
+		    		  result = "Congratulations! You win the match";
+		    		}else {
+		    		  result = "You tie with your opponent";
+		    		}
+		    	  }else {
+		    	    throw new RuntimeException("No winner Exception");  
+		    	  }
+		    	  break;
+		      }
+		    }
+		    if(result != null) {
+		      popUp(result);
+		      return;
+		    }
 		  container.updateUi(state, lastMove, lastMovePlayerId);
 		}
 	  }
@@ -286,9 +327,9 @@ public class ServerApi {
 	postInfo.put("playerIds", playerIds);
 	postInfo.put("gameId", gameId);
 	String message = postInfo.toString();
-	Window.alert("The postInfo is" + message);
+	//Window.alert("The postInfo is" + message);
 	sendMessageForInsertNewMatch(message, url, type);
-	Window.alert("insert new match");
+	//Window.alert("insert new match");
   }
   
   public static native void sendMessageForInsertNewMatch(String message, String url, int type) /*-{
@@ -318,14 +359,15 @@ public class ServerApi {
   public static void httpMessageHandler(String message, int type) {
     JSONObject response = JSONParser.parseStrict(message).isObject();
     String matchId = response.get("matchId").isString().stringValue();
-    Window.alert("Receive the matchId:" + matchId);
+    //Window.alert("Receive the matchId:" + matchId);
     container.setMatchId(matchId);
-    Window.alert("Get and set the matchId, then produce the initial move");
+    //Window.alert("Get and set the matchId, then produce the initial move");
     if(type==1) {
       container.updateUi(new JSONObject(), new JSONArray(), new JSONString("1"));
     }
     container.getOppInfoFromServer();
     container.getMyInfoFromServer();
+    exportOppPlayerId(container.getOppPlayerId());
     isPlayerInfoDisplayed = true;
   }
   
@@ -375,18 +417,110 @@ public class ServerApi {
   }-*/;
   
   public static void _httpMessageHandler(String message) {
-	Window.alert("End the Game");
     JSONObject response = JSONParser.parseStrict(message).isObject();
 	if(response != null) {
 	  JSONValue _state = response.get("state");
 	  if(_state != null) {
 	    JSONObject state = _state.isObject();
+	    //Window.alert(state.toString());
 	    JSONArray lastMove = response.get("lastMove").isArray();
+	    //Window.alert(lastMove.toString());
+	    //Window.alert(container.getMyPlayerId());
 	    JSONString lastMovePlayerId = new JSONString("1");
+	    List<Operation> lastOperations = deserialization.deserializeMove(lastMove);
+	    String result = null;
+	    for(Operation operation : lastOperations) {
+	      if(operation instanceof EndGame) {
+	    	  Map<String, Integer> scoreMap = ((EndGame) operation).getPlayerIdToScore();
+	    	  Integer myScore = scoreMap.get(container.getMyPlayerId());
+	    	  Integer oppScore = scoreMap.get(container.getOppPlayerId());
+	    	  if(myScore == null && oppScore != null) {
+	    		  result = "Sorry! You lose the match";	    	    
+	    	  }else if(oppScore == null && myScore != null) {
+	    		  result = "Congratulations! You win the match";
+	    	  }else if(oppScore != null && myScore != null) {
+	    		if(oppScore > myScore) {
+	    		  result = "Sorry! You lose the match";
+	    		}else if(oppScore < myScore) {
+	    		  result = "Congratulations! You win the match";
+	    		}else {
+	    		  result = "You tie with your opponent";
+	    		}
+	    	  }else {
+	    	    throw new RuntimeException("No winner Exception");  
+	    	  }
+	    	  break;
+	      }
+	    }
+	    if(result != null) {
+	      popUp(result);
+	      return;
+	    }
 	    container.updateUi(state, lastMove, lastMovePlayerId);
 	  }
 	}
   }
+  
+  public static void popUp(String result) {
+	String res = result + "\n" + "Do you want to play this game again ?";
+	String option1 = "Yes";
+	String option2 = "No";
+	List<String> options = Lists.newArrayList();
+	options.add(option1);
+	options.add(option2);
+	new PopupChoices(res, options, new OptionChosen() {
+	  @Override
+	  public void optionChosen(String option) {
+	    pageDirect(option); 
+	  }
+	}).center();
+  }
+  
+  public static native void pageDirect(String option) /*-{
+    var page = "./mainpage.html";
+    if(option == "No") {
+      $wnd.location.href = page;
+    }else {
+      $wnd.location.reload();
+    }
+  }-*/;
+  
+	static interface OptionChosen {
+		  void optionChosen(String option);
+	    }
+		
+		static class PopupChoices extends DialogBox {
+			  private Button firstChoice;
+
+			  public PopupChoices(String mainText, List<String> options, final OptionChosen optionChosen) {
+			    super(false, true);
+			    setText(mainText);
+			    setAnimationEnabled(true);
+			    HorizontalPanel buttons = new HorizontalPanel();
+			    for (String option : options) {
+			      final String optionF = option;
+			      Button btn = new Button(option);
+			      if (firstChoice == null) {
+			        firstChoice = btn;
+			      }
+			      btn.addClickHandler(new ClickHandler() {
+			        @Override
+			        public void onClick(ClickEvent event) {
+			          hide();
+			          optionChosen.optionChosen(optionF);
+			        }
+			      });
+			      buttons.add(btn);
+			    }
+			    setWidget(buttons);
+			  }
+			  @Override
+			  public void center() {
+			    super.center();
+			    firstChoice.setFocus(true);
+			  }
+			}
+		
   
   public static void getMatchInfo(
       String serverName,
@@ -405,8 +539,6 @@ public class ServerApi {
 	      .append("=")
 	      .append(gameId);
 	    String url = sb.toString();
-	    Window.alert("Prepare to get the match Info in the server API");
-	    Window.alert(url);
 	    sendMessageForGetMatchInfo(url);
   }
   
@@ -424,7 +556,6 @@ public class ServerApi {
         if(resJson["error"] != undefined) {
           alert(resJson["error"]);
         }else {
-          alert(response);
           @org.client.container.ServerApi::___httpMessageHandler(Ljava/lang/String;) (response);
         }
       }
@@ -446,6 +577,7 @@ public class ServerApi {
 	  if(!isPlayerInfoDisplayed) {
 	    container.getOppInfoFromServer();
 	    container.getMyInfoFromServer();
+	    exportOppPlayerId(container.getOppPlayerId());
 	    isPlayerInfoDisplayed = true;
 	  }
 	}else {
@@ -502,6 +634,35 @@ public class ServerApi {
 	  JSONObject state = response.get("state").isObject();
 	  JSONArray lastMove = response.get("lastMove").isArray();
 	  JSONString lastMovePlayerId = new JSONString("1");
+	    List<Operation> lastOperations = deserialization.deserializeMove(lastMove);
+	    String result = null;
+	    for(Operation operation : lastOperations) {
+	      if(operation instanceof EndGame) {
+	    	  Map<String, Integer> scoreMap = ((EndGame) operation).getPlayerIdToScore();
+	    	  Integer myScore = scoreMap.get(container.getMyPlayerId());
+	    	  Integer oppScore = scoreMap.get(container.getOppPlayerId());
+	    	  if(myScore == null && oppScore != null) {
+	    		  result = "Sorry! You lose the match";    	    
+	    	  }else if(oppScore == null && myScore != null) {
+	    		  result = "Congratulations! You win the match";
+	    	  }else if(oppScore != null && myScore != null) {
+	    		if(oppScore > myScore) {
+	    		  result = "Sorry! You lose the match";
+	    		}else if(oppScore < myScore) {
+	    		  result = "Congratulations! You win the match";
+	    		}else {
+	    		  result = "You tie with your opponent";
+	    		}
+	    	  }else {
+	    	    throw new RuntimeException("No winner Exception");  
+	    	  }
+	    	  break;
+	      }
+	    }
+	    if(result != null) {
+	      popUp(result);
+	      return;
+	    }
 	  container.updateUi(state, lastMove, lastMovePlayerId);
 	}else {
 	  throw new RuntimeException("Response is null");

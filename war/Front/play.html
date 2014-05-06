@@ -1,102 +1,227 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-
-<script type="text/javascript" src="https://talkgadget.google.com/talkgadget/channel.js"></script>
-    <script src="js/jquery-2.1.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/cookie.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/jquery.countdown.js"></script>
-    <script src="js/timer.js"></script>
-    
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Play Page</title>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <script src="../Container/Container.nocache.js"></script>
+  <script type="text/javascript" src="https://talkgadget.google.com/talkgadget/channel.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Play Page</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <script src="js/cookie.js"></script>
+  <script src="./js/playpagecheck.js"></script>
+  <script src="../Container/Container.nocache.js"></script>
 </head>
 <body style="background-color: #eeeeee">
+
 <div class="content">
-  <div class="row">
-        <div class="col-md-3">
-            <div class="row">
-                <div class="panel panel-info">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading center">
-                        <img id="oppprofile" class="img-circle" src="img/myturn.png" height="150" width="150">
-                        <img id="oppturn" src="img/unlight-bulb.png" height="100" width="100">
-                    </div>
-                    <!-- List group -->
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <strong id="oppfirstname"></strong>
-                            <strong id="oppnickname"></strong>
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="mainpage.html">GWT Container</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" name="user-name" class="dropdown-toggle" data-toggle="dropdown"></a>
+                    <ul class="dropdown-menu">
+                        <li align="center" class="well">
+                            <div><img name="user-image" class="img-responsive" style="padding:2%;" src="http://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/twDq00QDud4/s120-c/photo.jpg"/></div>
+                            <a href="#" class="btn btn-sm btn-default"><i class="fa fa-user"></i> Profile</a>
+                            <a href="#" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-lock"></span> Security</a>
+                            <a href="javascript:signout()" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                         </li>
                     </ul>
-                </div>
-            </div>
-
-            <div class="row">
-                <p></p>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div id="time" class="col-md-7">
-                         
-                        </div>
-                        <p></p>
-                    </div>
                 </li>
-            </div>
+            </ul>
 
-            <div class="row">
-                <div class="panel panel-info">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading center">
-                        <img id="myprofile" class="img-circle center" src="img/myturn.png" height="150" width="150">
-                        <img id="myturn" src="img/unlight-bulb.png" alt="Smiley face" height="100" width="100">
-                    </div>
-                    <!-- List group -->
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <strong id="myfirstname"></strong>
-                            <strong id="mynickname"></strong>
-                        </li>
-                    </ul>
+            <ul name="usericon" class = "nav navbar-nav navbar-right">
+                <li><a data-toggle="modal" href = "#loginModal"><span class="fa fa-user">Sign in</span></a></li>
+            </ul>
+
+            <!-- Modal -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"><strong>Please login</strong></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form class="form-horizontal" action='javascript:signin_()' method="GET">
+                                        <!-- Username -->
+                                        <label class="control-label"  for="email">Email</label>
+                                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                                        <!-- Password-->
+                                        <label class="control-label" for="password">Password</label>
+                                        <input type="password" id="password" name="password" class="form-control" placeholder="Passward" required>
+                                        <p></p>
+                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                        <a href="setNewPassword.html">Forgot Password?</a>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <h1></h1>
+                                        <div class="col-md-10 col-lg-offset-1">
+                                            <a class="btn btn-google-plus-style btn-lg btn-block" href="../userSocialAuth/google">
+                                                <span>Login with <strong>Google+</strong></span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-lg-offset-1">
+                                            <a class="btn btn-facebook-style btn-lg btn-block" href="../userSocialAuth/google">
+                                                <span>Login with <strong>Facebook</strong></span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-lg-offset-1">
+                                            <a class="btn btn-info btn-lg btn-block" href="../userSocialAuth/twitter">
+                                                <span>Login with <strong>Twitter</strong></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <p>
+                                <b>New To here?</b>
+                                <a href="signup.html" class="btn btn-primary">Register</a>
+                            </p>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+        </div>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div id="game-board" class="col-md-9 playcontainer">
+                <div class="modecontainer">
+                    <button onclick="window.handleSynAutoModeButtonClick()" class="btn btn-lg btn-primary  center">Sync Auto match</button>
                 </div>
+                <div class="modecontainer">
+                    <button data-toggle="modal" href = "#inviteModal" class="btn btn-lg btn-primary center">Async Invite Friend</button>
+                </div>
+
+                <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="inviteModalLabel"><strong>Invite Friend To Play</strong></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <form class="form-horizontal" action='javascript:XXXXXX' method="GET">
+                                                <!-- <label class="control-label"  for="email">Email</label> -->
+                                                <div class="input-group">
+                                                	<span class="input-group-addon"><strong>Email</strong></span>
+                                                	<input id="friendemail" type="email" id="inviteByEmail" name="email" class="form-control" placeholder="Email" required>
+                                               	</div>
+                                               	<h2></h2>
+                                                <!-- <label class="control-label">PlayerId</label> -->
+                                                <div class="input-group">
+                                                	<span class="input-group-addon"><strong>PlayerId</strong></span>
+                                                	<input id="friendplayerId" type="test" id="PlayerId" class="form-control" placeholder="PlayerId" required>
+                                                </div>
+                                                <p></p>
+                                                <!--<label class="control-label">URL</label>-->
+                                                <!--<input type="test" id="URL" class="form-control" placeholder="URL">-->
+                                            </form>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <p>
+                                    <a href="javascript:inviteFriend()" class="btn btn-lg btn-primary">Send</a>
+                                </p>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <div class="modecontainer">
+                    <button onclick="window.handleAsynAutoModeButtonClick()" class="btn btn-lg btn-primary center">Async Auto match</button>
+                </div>
+
+            </div>
+
+            <div class="col-md-3 infocontainer">
+                                <div class="playercontainer">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="img/black.jpg" height="80" width="85" style = "border:5px solid #f64141" rel="popover" data-content="" data-original-title="Player Info" id="myprofile"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-3">
+                            <img src="img/vs.png" height="100" width="100">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-7">
+                            <img src="img/black.jpg" height="80" width="85" rel="popover" data-content="" data-original-title="Player Info" id="oppprofile"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="time" class="timercontainer timerplace">
+                    
+                </div>
+               
+                                               <div class="buttoncontainer buttonplace">
+                    <a id="quit" class="btn btn-info btn-lg">
+                        Quit
+                    </a>
+               <a id="refresh"class="btn btn-info btn-lg">
+                       Refresh
+                    </a>
+                </div>
+
             </div>
         </div>
-
-        <div class="col-md-9">
-            <iframe id="board" style="width: 100%; hegitht: 600">
-
-            </iframe>
-
-            <a id="enter" class="btn btn-info btn-lg pull-right">
-                Enter
-            </a>
-            <a id="quit" class="btn btn-info btn-lg pull-right">
-                Quit
-            </a>
-            <a id="invite" class="btn btn-info btn-lg pull-right">
-               Invite
-            </a>
-            <input type="text" id="opp-player-id"/>
-            <a id="refresh" class="btn btn-info btn-lg pull-right">
-              Refresh
-            </a>
-            <a id="aenter" class="btn btn-info btn-lg pull-right">
-              Aenter
-            </a>
-            <input type="text" id="TimeCountDown"/>
-            <input type="text" id="TurnInfo"/>
-        </div>
-     </div>
+    </div>
 </div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-2.1.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-popover.js"></script>
+<script src="js/bootstrap-tooltip.js"></script>
+<script src="js/main.js"></script>
+<script src="js/jquery.countdown.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/sign.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/playpagecheck.js"></script>
 </body>
 </html>

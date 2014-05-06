@@ -22,38 +22,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">GWT Container</a>
+            <a class="navbar-brand" href="mainpage.html">GWT Container</a>
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="play.html">Play</a></li>
-                <li class="dropdown">
-                    <a href=# class="dropdown-toggle" data-toggle="dropdown">Play Mode<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-header"><strong>Single Play</strong></strong></li>
-                        <li><a href="#">Match a Opponent</a></li>
-                        <li><a href="#">Play with AI</a></li>
-                        <li><a href="#">Pass and Play</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header"><strong>Multi Play</strong></li>
-                        <li><a href="#">Match a Opponent</a></li>
-                        <li><a href="#">Invite a Friend</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Dropdown header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
@@ -85,7 +56,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel"><strong>login Page</strong></h4>
+                            <h4 class="modal-title" id="myModalLabel"><strong>Please login</strong></h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
@@ -146,39 +117,8 @@
     </div>
 </div>
 
-<div class="container" id="property-listings">
-<div class="row">
-<div class="col-md-2">
-    <div class="panel panel-info">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Most Hotting Game</div>
-        <!-- List group -->
-        <ul class="list-group">
-            <li class="list-group-item">asdfasd</li>
-            <li class="list-group-item">asdfasdfasdf</li>
-            <li class="list-group-item">asdfadsfasdfas</li>
-            <li class="list-group-item">sdgfadgsdfgsfdgs</li>
-            <li class="list-group-item">sdfgsdfgsdfgs</li>
-        </ul>
-        <div class="panel-footer">Panel footer</div>
-    </div>
-
-    <div class="panel panel-danger">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Most Hotting Game</div>
-        <!-- List group -->
-        <ul class="list-group">
-            <li class="list-group-item">asdfasd</li>
-            <li class="list-group-item">asdfasdfasdf</li>
-            <li class="list-group-item">asdfadsfasdfas</li>
-            <li class="list-group-item">sdgfadgsdfgsfdgs</li>
-            <li class="list-group-item">sdfgsdfgsdfgs</li>
-            <div class="panel-footer">Panel footer</div>
-        </ul>
-    </div>
-</div>
-
-<div class="col-md-10">
+<div class="content" id="property-listings">
+<div class="col-md-12">
 <!--FILTERS-->
 <div class="row">
     <div class="col-md-7 col-md-offset-1">
@@ -199,10 +139,10 @@
     </div>
 </div>
 <!--FILTERS-->
-<div class="row">
-<div class="col-md-6 isotope">
+<!--<div class="row">-->
+<div class=" isotope">
     <!-- Begin Listing: 609 W GRAVERS LN-->
-    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame">
+    <div id="4663171621060608" class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame" style="width:48%; margin-left: 10px">
         <div class="media">
             <a class="pull-left" href="#" target="_parent">
                 <img alt="image" class="img-responsive" src="img/black.jpg"></a>
@@ -217,12 +157,36 @@
 
 
                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                    <li>Difficulty: </li>
-                    <li class="difficulty">5</li>
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">5</li>
                     <li style="list-style: none">|</li>
 
-                    <li>Rating: </li>
-                    <li class="rating">5</li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo" class="btn btn-sm btn-info" id="_4663171621060608" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
                 </ul>
 
                 <p class="hidden-xs">
@@ -232,13 +196,13 @@
                                             <span class="fnt-smaller fnt-lighter fnt-arial">
                                                 t, including families of related games (suc
                                             </span>
-                <button class="btn-sm btn-primary pull-right" data-toggle="modal" data-target="#PlayModeModal">play</button>
+                <button class="btn-sm btn-primary pull-right" onclick="checkLogin()">play</button>
             </div>
         </div>
     </div><!-- End Listing-->
 
     <!-- Begin Listing: 218 LYNNEBROOK LN-->
-    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame">
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame" style="width:48%; margin-left: 10px">
         <div class="media">
             <a class="pull-left" href="#" target="_parent">
                 <img alt="image" class="img-responsive" src="img/black.jpg"></a>
@@ -252,12 +216,36 @@
 
 
                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                    <li>Difficulty: </li>
-                    <li class="difficulty">4</li>
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-0987654544434356" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">2</li>
                     <li style="list-style: none">|</li>
 
-                    <li>Rating: </li>
-                    <li class="rating">2</li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-8181726162371" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-8181726162371"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-2984723894710340" class="btn btn-sm btn-info" id="_46631716245645361060608" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
                 </ul>
 
                 <p class="hidden-xs">
@@ -273,7 +261,7 @@
     </div><!-- End Listing-->
 
     <!-- Begin Listing: 218 LYNNEBROOK LN-->
-    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame">
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame" style="width:48%; margin-left: 10px">
         <div class="media">
             <a class="pull-left" href="#" target="_parent">
                 <img alt="image" class="img-responsive" src="img/black.jpg"></a>
@@ -288,12 +276,36 @@
 
 
                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                    <li>Difficulty: </li>
-                    <li class="difficulty">3</li>
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-09876545444343567" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">3</li>
                     <li style="list-style: none">|</li>
 
-                    <li>Rating: </li>
-                    <li class="rating">3</li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-09876545444343567" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-09876545444343567"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-09876545444343567" class="btn btn-sm btn-info" id="-09876545444343567" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
                 </ul>
 
                 <p class="hidden-xs">
@@ -309,7 +321,7 @@
     </div><!-- End Listing-->
 
     <!-- Begin Listing: 209 CHESTNUT HILL AVE-->
-    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame">
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame" style="width:48%; margin-left: 10px">
         <div class="media">
             <a class="pull-left" href="#" target="_parent">
                 <img alt="image" class="img-responsive" src="img/black.jpg"></a>
@@ -324,12 +336,36 @@
 
 
                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                    <li>Difficulty: </li>
-                    <li class="difficulty">5</li>
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-098765454443435" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">1</li>
                     <li style="list-style: none">|</li>
 
-                    <li>Rating: </li>
-                    <li class="rating">1</li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-62368704123974109823" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-62368704123974109823"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-62368704123974109823" class="btn btn-sm btn-info" id="-62368704123974109823" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
                 </ul>
 
                 <p class="hidden-xs">
@@ -344,13 +380,8 @@
         </div>
     </div><!-- End Listing-->
 
-
-</div>
-
-
-<div class="col-md-6 isotope">
     <!-- Begin Listing: 609 W GRAVERS LN-->
-    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame">
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame" style="width:48%; margin-left: 10px">
         <div class="media">
             <a class="pull-left" href="#" target="_parent">
                 <img alt="image" class="img-responsive" src="img/black.jpg"></a>
@@ -365,12 +396,36 @@
 
 
                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                    <li>Difficulty: </li>
-                    <li class="difficulty">1</li>
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-09876545444343567001" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">5</li>
                     <li style="list-style: none">|</li>
 
-                    <li>Rating: </li>
-                    <li class="rating">5</li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-721309470192374019237" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-721309470192374019237"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-721309470192374019237" class="btn btn-sm btn-info" id="-721309470192374019237" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
                 </ul>
 
                 <p class="hidden-xs">
@@ -387,7 +442,7 @@
 
 
     <!-- Begin Listing: 704 SAINT GEORGES ST-->
-    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame">
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame" style="width:48%; margin-left: 10px">
         <div class="media">
             <a class="pull-left" href="#" target="_parent">
                 <img alt="image" class="img-responsive" src="img/black.jpg"></a>
@@ -402,12 +457,36 @@
 
 
                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                    <li>Difficulty: </li>
-                    <li class="difficulty">3</li>
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-09876545444343" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">5</li>
                     <li style="list-style: none">|</li>
 
-                    <li>Rating: </li>
-                    <li class="rating">5</li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-2341234123409790128" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-2341234123409790128"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-2341234123409790128" class="btn btn-sm btn-info" id="-2341234123409790128" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
                 </ul>
 
                 <p class="hidden-xs">
@@ -423,7 +502,7 @@
     </div><!-- End Listing-->
 
     <!-- Begin Listing: 701 W ALLENS LN-->
-    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame">
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame" style="width:48%; margin-left: 10px">
         <div class="media">
             <a class="pull-left" href="#" target="_parent">
                 <img alt="image" class="img-responsive" src="img/black.jpg"></a>
@@ -438,12 +517,36 @@
 
 
                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                    <li>Difficulty: </li>
-                    <li class="difficulty">3</li>
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-098765454443435671231" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">1</li>
                     <li style="list-style: none">|</li>
 
-                    <li>Rating: </li>
-                    <li class="rating">1</li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-07987098709870931" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-07987098709870931"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-07987098709870931" class="btn btn-sm btn-info" id="-07987098709870931" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
                 </ul>
 
                 <p class="hidden-xs">
@@ -459,7 +562,7 @@
     </div><!-- End Listing-->
 
     <!-- Begin Listing: 704 SAINT GEORGES ST-->
-    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame">
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame" style="width:48%; margin-left: 10px">
         <div class="media">
             <a class="pull-left" href="#" target="_parent">
                 <img alt="image" class="img-responsive" src="img/black.jpg"></a>
@@ -474,12 +577,36 @@
 
 
                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                    <li>Difficulty: </li>
-                    <li class="difficulty">2</li>
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-0987654544434356743" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">3</li>
                     <li style="list-style: none">|</li>
 
-                    <li>Rating: </li>
-                    <li class="rating">3</li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-17907948567390845762" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-17907948567390845762"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-17907948567390845762" class="btn btn-sm btn-info" id="-17907948567390845762" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
                 </ul>
 
                 <p class="hidden-xs">
@@ -493,53 +620,18 @@
             </div>
         </div>
     </div><!-- End Listing-->
+<!--</div>-->
 </div>
 </div>
 </div>
 </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="PlayModeModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Please Choose Play Mode</h4>
-            </div>
-
-            <div class="modal-body">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Multi Play<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a onclick="javascript:playgame('cheat.html', '500', '600', '6591089830002688')">Automatic Match</a></li>
-                        <li><a href="#">Invite a friend</a></li>
-                    </ul>
-                </div>
-
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Single Play<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Play with AI</a></li>
-                        <li><a href="#">Pass and Play</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-popover.js"></script>
+<script src="js/bootstrap-tooltip.js"></script>
 <script src="js/cookie.js"></script>
 <script src="js/main.js"></script>
 <script src="js/sign.js"></script>
@@ -547,5 +639,7 @@
 <script src="js/jquery.isotope.min.js"></script>
 <script src="js/jquery.countdown.js"></script>
 <script src="js/playgame.js"></script>
+<script src="js/rating.js"></script>
+<script src="js/getDeveloperInfo.js"></script>
 </body>
 </html>

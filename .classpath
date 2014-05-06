@@ -9,5 +9,8 @@
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/Yigencong/Desktop/1/New Container/GWT-Container/war/WEB-INF/lib/gwt-servlet.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/Yigencong/Downloads/96951367193619671/imap.jar"/>
+	<classpathentry kind="lib" path="/Users/Yigencong/Downloads/96951367193619671/mail.jar"/>
+	<classpathentry kind="lib" path="/Users/Yigencong/Downloads/96951367193619671/smtp.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

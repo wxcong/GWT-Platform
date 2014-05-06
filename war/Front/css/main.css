@@ -55,7 +55,7 @@
 }
 
 .content {
-    position: relative; padding: 1em 2em; margin: auto; width: 100%; text-align: left;
+    position: relative; padding: 1em 1em; margin: auto; width: 100%; text-align: left;
 }
 
 .center {
@@ -141,7 +141,7 @@
     padding: 0 10px 0 0;
 }
 .container-pad {
-    padding: 30px 15px;
+    padding: 10px 10px;
 }
 
 
@@ -245,4 +245,207 @@
     text-decoration:none;
     background-color:black;
     color:white;
+}
+
+
+
+/******** playmode ******/
+.pricing-table .plan {
+    margin-left:0px;
+    height: 260px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f3f3f3;
+    -moz-box-shadow: 0 0 6px 2px #b0b2ab;
+    -webkit-box-shadow: 0 0 6px 2px #b0b2ab;
+    box-shadow: 0 0 6px 2px #b0b2ab;
+}
+
+.plan:hover {
+    background-color: #fff;
+    -moz-box-shadow: 0 0 12px 3px #b0b2ab;
+    -webkit-box-shadow: 0 0 12px 3px #b0b2ab;
+    box-shadow: 0 0 12px 3px #b0b2ab;
+}
+
+.plan {
+    padding: 20px;
+    margin-left:0px;
+    background-color: #5e5f59;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.plan-name-bronze {
+    padding: 20px;
+    color: #fff;
+    height: 160px;
+    background-color: #665D1E;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.plan-name-silver {
+    padding: 20px;
+    color: #fff;
+    height: 160px;
+    background-color: #C0C0C0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.plan-name-gold {
+    padding: 20px;
+    color: #fff;
+    height: 160px;
+    background-color: #FFD700;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.plan-name-black {
+    padding: 20px;
+    color: #fff;
+    height: 160px;
+    background-color: #000000;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.plan-name-blue {
+    padding: 20px;
+    color: #fff;
+    height: 160px;
+    background-color: #a6e1ec;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.pricing-table-bronze  {
+    padding: 20px;
+    color: #fff;
+    background-color: #08439a;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.pricing-table .plan .plan-name span {
+    font-size: 20px;
+}
+
+.pricing-table .plan ul {
+    list-style: none;
+    margin: 0;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+.pricing-table .plan ul li.plan-feature {
+    padding: 15px 10px;
+    margin-right: 35px;
+}
+
+.pricing-three-column {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.pricing-variable-height .plan {
+    float: none;
+    margin-left: 2%;
+    vertical-align: bottom;
+    display: inline-block;
+    zoom:1;
+    *display:inline;
+}
+
+.plan-mouseover .plan-name {
+    background-color: #4e9a06 !important;
+}
+
+.btn-plan-select {
+    padding: 8px 25px;
+    font-size: 18px;
+}
+
+/**play page**/
+
+.playcontainer{
+    padding: 15px;
+    margin-left:0px;
+    height: 620px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f3f3f3;
+    -moz-box-shadow: 0 0 6px 2px #b0b2ab;
+    -webkit-box-shadow: 0 0 6px 2px #b0b2ab;
+    box-shadow: 0 0 6px 2px #b0b2ab;
+}
+
+.modecontainer{
+    padding: 30px;
+    margin-top: 40px;
+    margin-left: 250px;
+    margin-right: 250px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f3f3f3;
+}
+
+.infocontainer{
+    padding: 15px;
+    margin-left:0px;
+    height: 620px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f3f3f3;
+    -moz-box-shadow: 6px 2px #b0b2ab;
+    -webkit-box-shadow:6px 2px #b0b2ab;
+    box-shadow: 0 0 6px 2px #b0b2ab;
+}
+
+.playercontainer{
+    height:300px;
+    padding: 15px;
+    text-align: center;
+    background-color: #f3f3f3;
+    -moz-box-shadow: 6px 2px #b0b2ab;
+    -webkit-box-shadow:6px 2px #b0b2ab;
+    box-shadow: 0 0 6px 2px #b0b2ab;
+}
+
+.timercontainer{
+    height:180px;
+    text-align: center;
+    background-color: #f3f3f3;
+    -moz-box-shadow: 6px 2px #b0b2ab;
+    -webkit-box-shadow:6px 2px #b0b2ab;
+    box-shadow: 0 0 6px 2px #b0b2ab;
+}
+
+.buttoncontainer{
+    height:110px;
+    text-align: center;
+    background-color: #f3f3f3;
+    -moz-box-shadow: 6px 2px #b0b2ab;
+    -webkit-box-shadow:6px 2px #b0b2ab;
+    box-shadow: 0 0 6px 2px #b0b2ab;
+}
+
+.buttonplace{
+    padding:30px;
+    test-align:center;
+}
+
+.timerplace{
+    padding:30px
+    test-align:center;
 }

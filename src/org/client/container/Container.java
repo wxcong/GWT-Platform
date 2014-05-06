@@ -9,7 +9,6 @@ import org.client.container.GameApi.EndGame;
 import org.client.container.GameApi.SetTurn;
 import java.util.List;
 
-
 public class Container {  
   
   private String matchId = null;
@@ -25,6 +24,20 @@ public class Container {
   
   private String serverName = "http://5-dot-smg-server-rl.appspot.com/";
 	
+  public String getMyPlayerId() {
+    return myPlayerId;
+  }
+  
+  public String getOppPlayerId() {
+    String _1 = playerIds.get(0);
+    String _2 = playerIds.get(1);
+    if(myPlayerId.equals(_1)) {
+      return _2;
+    }else {
+      return _1;
+    }
+  }
+  
   //for UI test
   public void setGameId(String gameId) {
     this.gameId = gameId;
@@ -224,7 +237,6 @@ public class Container {
   public void setPlayerIds(String oppId) {
     playerIds.add(myPlayerId);
     playerIds.add(oppId);
-    Window.alert("playerIds are:" + playerIds.toString());
   }
   
   public void getMatchInfo() {
@@ -254,7 +266,6 @@ public class Container {
   }
   
   public void getOppInfoFromServer() {
-	Window.alert("To Get Info of My Opp");
 	String oppPlayerId = myPlayerId.equals(playerIds.get(0)) ? playerIds.get(1) : playerIds.get(0);
     ServerApi.getPlayerInfo(
         serverName,
@@ -264,7 +275,6 @@ public class Container {
   }
   
   public void getMyInfoFromServer() {
-	Window.alert("To Get Info of Myself");
     ServerApi.getPlayerInfo(
         serverName,
         myPlayerId,
@@ -273,13 +283,13 @@ public class Container {
   }
 
   public native void setTimeCountDown(Container container) /*-{
-  	var seconds = 30;
+  	var seconds = 300;
   	var span = seconds;
   	var lapse = 0;
   	$wnd.timer = setInterval(function() {
   	  lapse ++;
   	  var diff = span - lapse;
-  	  $doc.getElementById("time").innerHTML = "<h2>" + diff + "</h2>";
+  	  $doc.getElementById("time").innerHTML = diff;
   	  if(lapse == span) {
   	    clearInterval($wnd.timer);
   	    container.@org.client.container.Container::invokeQuitGameTimeOver() ();
@@ -304,12 +314,12 @@ public class Container {
   
   public native void setTurnInfoDisplay(String turnInfo) /*-{ 
   	if(turnInfo == "MyTurn") {
-  	  $doc.getElementById("oppturn").src = "img/unlight-bulb.png";
-  	  $doc.getElementById("myturn").src = "img/light-bulb.gif";
+  	  $doc.getElementById("myprofile").style.border = "5px solid #f64141";
+  	  $doc.getElementById("oppprofile").style.border = "";
   	}
   	if(turnInfo == "OppTurn") {
-  	  $doc.getElementById("myturn").src = "img/unlight-bulb.png";
-  	  $doc.getElementById("oppturn").src = "img/light-bulb.gif";
+  	  $doc.getElementById("oppprofile").style.border = "5px solid #f64141";
+  	  $doc.getElementById("myprofile").style.border = "";
   	}
   }-*/;
 
